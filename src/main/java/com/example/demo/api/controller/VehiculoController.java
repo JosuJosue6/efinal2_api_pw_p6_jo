@@ -7,6 +7,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.Link;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -44,6 +45,7 @@ public class VehiculoController {
 		for (Vehiculo vehiculo : lsV) {
 			ls.add(this.service.convertir(vehiculo));
 		}
+
 		return ls;
 	}
 
@@ -53,7 +55,7 @@ public class VehiculoController {
 		this.service.borrar(vehiculo);
 	}
 
-	// http://localhost:8082/API/v1.0/Consecionario/vehiculos
+	// http://localhost:8082/API/v1.0/Consecionario/vehiculos/{placa}
 	@GetMapping(path = "/{placa}",produces = MediaType.APPLICATION_JSON_VALUE)
 	public VehiculoTO buscarPorPlaca(@PathVariable String placa) {
 		
